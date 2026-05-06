@@ -49,7 +49,7 @@ public  class UIController {
     }
     public void findTop(FindTopResponse response){
         RecyclerView recyclerView=null;
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
+        recyclerView.setAdapter(new RecyclerView.Adapter(){
             @NonNull
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,11 +62,9 @@ public  class UIController {
                 TextView name = holder.itemView.findViewById(R.id.userName);
                 TextView rank = holder.itemView.findViewById(R.id.userRank);
                 ImageView avatar = holder.itemView.findViewById(R.id.avatarIcon);
-
                 name.setText(user.getLogin());
                 rank.setText(user.getExperts());
                 Picasso.get().load(user.getAvatar()).into(avatar);
-
             }
             @Override
             public int getItemCount() {

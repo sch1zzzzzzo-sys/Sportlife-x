@@ -18,12 +18,14 @@ public class SearchResponse {
     private int totalPage;
     @Data
     @AllArgsConstructor
-    public class Exercise{
-        private String name;
+    @NoArgsConstructor
+    public static class Exercise{
         private String video;
         private String description;
-        private String photo;
+        private String name;
         private List<String> muscles;
         private List<String> items;
+        private Boolean favourites;
+        private String experts;
     }
 }
