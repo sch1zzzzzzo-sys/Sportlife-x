@@ -11,7 +11,7 @@
         android:layout_height="252dp"
         android:layout_gravity="center"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ikonka" />
+        android:src="@drawable/zvezda" />
 
     <ProgressBar
         android:id="@+id/loadingIndicator"
