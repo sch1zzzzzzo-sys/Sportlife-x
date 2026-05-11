@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sportlife.AndroidBackGround.Controller.ErrorController;
 import com.example.sportlife.AndroidBackGround.Controller.UIController;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandler;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandlerImpl;
@@ -49,7 +50,8 @@ public class ActivityLevel extends CreateActivity {
         List<TextView> textViews=new ArrayList<>();
         textViews.add(expert);
         UIController uiController=new UIController(this,textViews);
-        CallBackHandler callBack=new CallBackHandlerImpl(uiController);
+        ErrorController errorController=new ErrorController();
+        CallBackHandler callBack=new CallBackHandlerImpl(uiController,errorController);
         UpdateExpertsService service=new UpdateExpertsService();
         easy.setOnClickListener(v->{ experts =easy.getText().toString();});
         medium.setOnClickListener(v->{experts=medium.getText().toString();});

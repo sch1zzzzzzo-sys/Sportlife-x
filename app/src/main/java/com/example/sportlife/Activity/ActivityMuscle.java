@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sportlife.AndroidBackGround.Controller.ErrorController;
 import com.example.sportlife.AndroidBackGround.Controller.UIController;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandler;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandlerImpl;
@@ -45,7 +46,8 @@ public class ActivityMuscle extends CreateActivity {
 
         super.onCreate(savedInstanceState);
         UIController uiController=new UIController(this,null);
-        CallBackHandler callBack=new CallBackHandlerImpl(uiController);
+        ErrorController errorController=new ErrorController();
+        CallBackHandler callBack=new CallBackHandlerImpl(uiController,errorController);
 
 
         findViewById(R.id.btnPrev).setOnClickListener(v -> switchPage(-1));

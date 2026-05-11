@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportlife.AndroidBackGround.Dto.Response.ErrorResponse;
@@ -38,7 +39,9 @@ public  class UIController {
         activity.finish();
     }
     public void ErrorAdvice(ErrorResponse error){
+        this.errorService("2");
         editTexts.forEach(e->e.setError(null));
+        errorService("3");
         editTexts.forEach(e->e.setError(error.getErrors().get(e.getTag().toString()).toString()));
     }
     public void errorService(String message){
@@ -46,6 +49,7 @@ public  class UIController {
     }
     public void findTop(FindTopResponse response){
         RecyclerView recyclerView=activity.findViewById(R.id.recyclerViewTop);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new RecyclerView.Adapter(){
             @NonNull
             @Override
@@ -55,13 +59,17 @@ public  class UIController {
             }
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-                FindTopResponse.Top user=response.getTop().get(position);
+                FindTopResponse.EmployeeTop user=response.getTop().get(position);
                 TextView name = holder.itemView.findViewById(R.id.userName);
                 TextView rank = holder.itemView.findViewById(R.id.userRank);
                 ImageView avatar = holder.itemView.findViewById(R.id.avatarIcon);
                 name.setText(user.getLogin());
                 rank.setText(user.getExperts());
-                Picasso.get().load(user.getAvatar()).into(avatar);
+                Picasso.get()
+                        .load(user.getAvatar())
+                        .fit()
+                        .centerCrop()
+                        .into(avatar);
             }
             @Override
             public int getItemCount() {
@@ -71,6 +79,7 @@ public  class UIController {
     }
     public void findInventory(FindInventoryResponse response){
         RecyclerView recyclerView=activity.findViewById(R.id.recyclerInventory);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new RecyclerView.Adapter() {
             @NonNull
             @Override
@@ -84,7 +93,11 @@ public  class UIController {
                 ImageView photo = holder.itemView.findViewById(R.id.imgEquipment);
                 TextView name = holder.itemView.findViewById(R.id.tvEquipmentName);
                 name.setText(inventory.getName());
-                Picasso.get().load(inventory.getPhoto()).into(photo);
+                Picasso.get()
+                        .load(inventory.getPhoto())
+                        .fit()
+                        .centerCrop()
+                        .into(photo);
                 holder.itemView.setOnClickListener(v->{
                     SearchService.getItems().add(name.getText().toString());});
             }
@@ -97,6 +110,7 @@ public  class UIController {
     }
     public void findExercises(SearchResponse response){
         RecyclerView recyclerView=activity.findViewById(R.id.recyclerViewResults);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new RecyclerView.Adapter() {
             @NonNull
             @Override
@@ -114,19 +128,39 @@ public  class UIController {
                 TextView experts=view.findViewById(R.id.tvExpertise);
                 ImageView favourites=view.findViewById(R.id.chkFavorite);
                 if(exercise.getFavourites()){
-                    Picasso.get().load("").into(favourites);//закрашенное сердечко
+                    Picasso.get()
+                            .load("")
+                            .fit()
+                            .centerCrop()
+                            .into(favourites);//закрашенное сердечко
                 }else{
-                    Picasso.get().load("").into(favourites);//не закрашенне сердечко
+                    Picasso.get()
+                            .load("")
+                            .fit()
+                            .centerCrop()
+                            .into(favourites);;//не закрашенне сердечко
                 }
                 experts.setText(exercise.getExperts());
                 name.setText(exercise.getName());
-                Picasso.get().load(exercise.getPhoto()).into(photo);
+                Picasso.get()
+                        .load(exercise.getPhoto())
+                        .fit()
+                        .centerCrop()
+                        .into(photo);
                 favourites.setOnClickListener(v->{
                     if(exercise.getFavourites()) {
-                        Picasso.get().load("").into(favourites);//меняем на незакрашенное сердце
+                        Picasso.get()
+                                .load("")
+                                .fit()
+                                .centerCrop()
+                                .into(favourites);//меняем на незакрашенное сердце
                         exercise.setFavourites(false);
                     }else{
-                    Picasso.get().load("").into(favourites);//меняем на закрашеное сердцо
+                        Picasso.get()
+                                .load("")
+                                .fit()
+                                .centerCrop()
+                                .into(favourites);//меняем на закрашеное сердцо
                     exercise.setFavourites(true);
                 }
                 });

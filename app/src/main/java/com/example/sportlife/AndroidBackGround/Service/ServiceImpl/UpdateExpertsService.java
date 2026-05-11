@@ -16,7 +16,6 @@ import retrofit2.Response;
 public class UpdateExpertsService {
     public void updateExperts(String experts, CallBackHandler callBack){
         ApiRepository apiRepository= RetrofitClient.getApiRepository();
-        ErrorController errorController=new ErrorController();
         ExpertsRequest request=new ExpertsRequest(experts);
         apiRepository.updateExperts(request).enqueue(new Callback<UpdateResponse>() {
             @Override
@@ -24,13 +23,12 @@ public class UpdateExpertsService {
                 if(response.isSuccessful()&&response.body()!=null) {
                     callBack.onSuccess(ActivityMuscle.class);
                 }else{
-                    ErrorResponse error=errorController.parseError(response);
-                    callBack.onError(error);
+                    callBack.onError(response);
                 }
             }
             @Override
             public void onFailure(Call<UpdateResponse> call, Throwable t) {
-                callBack.onNetworkError(t.getMessage());
+                callBack.onTools(t.getMessage());
             }
         });
 

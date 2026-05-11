@@ -17,7 +17,6 @@ public class FindInventoryService {
     private   int totalPage;
     public void findInventory(int page,CallBackHandler callBack){
         ApiRepository apiRepository= RetrofitClient.getApiRepository();
-        ErrorController errorController=new ErrorController();
         apiRepository.findInventory(10,page).enqueue(new Callback<FindInventoryResponse>() {
             @Override
             public void onResponse(Call<FindInventoryResponse> call, Response<FindInventoryResponse> response) {
@@ -25,14 +24,13 @@ public class FindInventoryService {
                     setTotalPage(response.body().getTotalPage());
                     callBack.findInventory(response.body());
                 }else{
-                    ErrorResponse errorResponse=errorController.parseError(response);
-                    callBack.onError(errorResponse);
+                    callBack.onError(response);
                 }
             }
 
             @Override
             public void onFailure(Call<FindInventoryResponse> call, Throwable t) {
-                callBack.onNetworkError(t.getMessage());
+                callBack.onTools(t.getMessage());
             }
         });
     }

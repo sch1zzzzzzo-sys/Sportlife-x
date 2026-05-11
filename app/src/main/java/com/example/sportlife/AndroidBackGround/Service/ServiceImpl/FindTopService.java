@@ -1,16 +1,11 @@
 package com.example.sportlife.AndroidBackGround.Service.ServiceImpl;
 
-import android.app.Activity;
-
-import com.example.sportlife.Activity.ActivityHome;
 import com.example.sportlife.AndroidBackGround.Client.ApiRepository;
 import com.example.sportlife.AndroidBackGround.Client.RetrofitClient;
 import com.example.sportlife.AndroidBackGround.Controller.ErrorController;
-import com.example.sportlife.AndroidBackGround.Controller.UIController;
 import com.example.sportlife.AndroidBackGround.Dto.Response.ErrorResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.FindTopResponse;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandler;
-import com.example.sportlife.AndroidBackGround.Service.CallBackHandlerImpl;
 
 import lombok.RequiredArgsConstructor;
 import retrofit2.Call;
@@ -27,15 +22,12 @@ public class FindTopService {
                 if(response.isSuccessful()&&response.body()!=null) {
                     callBack.findTop(response.body());
                 }else{
-                    ErrorController errorController=new ErrorController();
-                    ErrorResponse errorResponse;
-                    errorResponse=errorController.parseError(response);
-                    callBack.onError(errorResponse);
+                    callBack.onError(response);
                 }
             }
             @Override
             public void onFailure(Call<FindTopResponse> call, Throwable t) {
-                callBack.onNetworkError(t.getMessage());
+                callBack.onTools(t.getMessage());
             }
         });
     }

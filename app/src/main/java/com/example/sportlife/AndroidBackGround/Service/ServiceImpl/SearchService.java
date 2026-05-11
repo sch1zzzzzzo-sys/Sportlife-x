@@ -22,37 +22,38 @@ public class SearchService {
     private static List<String> muscles;
     @Getter
     private static List<String> items;
+    @Getter
+    private static List<SearchResponse.Exercise> exercises;
     public void search(CallBackHandler callBack, int page){
         SearchRequest request=new SearchRequest(muscles,items);
-        ErrorController errorController=new ErrorController();
         ApiRepository apiRepository= RetrofitClient.getApiRepository();
         apiRepository.search(request,10,page).enqueue(new Callback<SearchResponse>() {
             @Override
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 if(response.isSuccessful()&&response.body()!=null){
+                    exercises=response.body().getExercises();
                     callBack.findExercise(response.body());
                 }else{
-                    ErrorResponse errorResponse=errorController.parseError(response);
-                    callBack.onError(errorResponse);
+                    callBack.onError(response);
                 }
             }
 
             @Override
             public void onFailure(Call<SearchResponse> call, Throwable t) {
-                callBack.onNetworkError(t.getMessage());
+                callBack.onTools(t.getMessage());
             }
         });
     }
     public static void setMuscles(List<String> muscles, CallBackHandler callBack){
         if(muscles.isEmpty()){
-            callBack.onNetworkError("");
+            callBack.onTools("");
         }else {
             SearchService.muscles = muscles;
         }
     }
     public static void setItems(List<String> items, CallBackHandler callBack){
         if(items.isEmpty()){
-            callBack.onNetworkError("");
+            callBack.onTools("");
         }else {
             SearchService.items = items;
         }

@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportlife.Activity.CreateActivity;
+import com.example.sportlife.AndroidBackGround.Controller.ErrorController;
 import com.example.sportlife.AndroidBackGround.Controller.UIController;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandler;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandlerImpl;
@@ -33,7 +34,8 @@ public class ActivityFavorites extends CreateActivity {
         super.onCreate(savedInstanceState);
         FindTopService findTopService = new FindTopService();
         UIController uiController = new UIController(this, null);
-        CallBackHandler callBack = new CallBackHandlerImpl(uiController);
+        ErrorController errorController=new ErrorController();
+        CallBackHandler callBack = new CallBackHandlerImpl(uiController,errorController);
         findTopService.findTop(callBack);
 
 

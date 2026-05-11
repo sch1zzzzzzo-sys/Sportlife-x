@@ -1,8 +1,5 @@
 package com.example.sportlife.AndroidBackGround.Security;
 
-import com.example.sportlife.AndroidBackGround.Service.ServiceImpl.RefreshService;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

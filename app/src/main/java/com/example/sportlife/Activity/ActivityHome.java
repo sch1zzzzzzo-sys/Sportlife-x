@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sportlife.AndroidBackGround.Controller.ErrorController;
 import com.example.sportlife.AndroidBackGround.Controller.UIController;
 import com.example.sportlife.AndroidBackGround.Security.SecurityContext;
 import com.example.sportlife.AndroidBackGround.Service.CallBackHandler;
@@ -40,7 +41,8 @@ public class ActivityHome extends CreateActivity {
         name.setText(SecurityContext.getName());
         FindTopService findTopService=new FindTopService();
         UIController uiController=new UIController(this,null);
-        CallBackHandler callBack=new CallBackHandlerImpl(uiController);
+        ErrorController errorController=new ErrorController();
+        CallBackHandler callBack=new CallBackHandlerImpl(uiController,errorController);
         findTopService.findTop(callBack);
         Button search=this.findViewById(R.id.btnSearch);
         Button history=this.findViewById(R.id.btnHistory);

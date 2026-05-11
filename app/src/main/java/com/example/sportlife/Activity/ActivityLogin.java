@@ -51,7 +51,8 @@ public class ActivityLogin extends CreateActivity {
         editTexts.add(editTextName);
         editTexts.add(editTextPassword);
         UIController uiController=new UIController(this,editTexts);
-        CallBackHandler callBack=new CallBackHandlerImpl(uiController);
+        ErrorController errorController=new ErrorController();
+        CallBackHandler callBack=new CallBackHandlerImpl(uiController,errorController);
         registrationService=new RegistrationService();
         tv_have_account = findViewById(R.id.tv_have_account);
         tv_have_account.setOnClickListener(v-> {
