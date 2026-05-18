@@ -20,7 +20,7 @@ import lombok.Setter;
 
 public class ActivityFavouriteDetails extends CreateActivity{
     @Setter
-    private static ExoPlayer player;
+    public static ExoPlayer player;
     @Override
     protected void onDestroy(){
         super.onDestroy();
