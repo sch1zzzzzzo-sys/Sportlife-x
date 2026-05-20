@@ -6,6 +6,7 @@ import com.example.sportlife.AndroidBackGround.Dto.Request.FavouritesRequest;
 import com.example.sportlife.AndroidBackGround.Dto.Request.RefreshRequest;
 import com.example.sportlife.AndroidBackGround.Dto.Request.RegistrationRequest;
 import com.example.sportlife.AndroidBackGround.Dto.Request.SearchRequest;
+import com.example.sportlife.AndroidBackGround.Dto.Request.UpdateEmployeeRequest;
 import com.example.sportlife.AndroidBackGround.Dto.Response.AuthResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.FavouritesResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.FindInventoryResponse;
@@ -15,6 +16,7 @@ import com.example.sportlife.AndroidBackGround.Dto.Response.RefreshResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.RegistrationResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.ExerciseCardResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.SplashResponse;
+import com.example.sportlife.AndroidBackGround.Dto.Response.UpdateEmployeeResponse;
 import com.example.sportlife.AndroidBackGround.Dto.Response.UpdateResponse;
 
 import retrofit2.Call;
@@ -55,6 +57,8 @@ public interface ApiRepository {
     Call<SplashResponse> splash();
     @GET("Favourites/info")
     Call<ExerciseCardResponse> findFavourites(@Query("size") int size,@Query("page") int page);
-    @POST("Employee/update")
+    @GET("Employee/info")
     Call<ProfileResponse> infoProfile();
+    @PATCH("Employee/update")
+    Call<UpdateEmployeeResponse> update(@Body UpdateEmployeeRequest request);
 }

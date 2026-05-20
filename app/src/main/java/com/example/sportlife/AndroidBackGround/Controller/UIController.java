@@ -2,6 +2,7 @@ package com.example.sportlife.AndroidBackGround.Controller;
 
 import static androidx.media3.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -14,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.util.UnstableApi;
-import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -148,7 +148,6 @@ public  class UIController {
                 TextView name=view.findViewById(R.id.tvName);
                 TextView experts=view.findViewById(R.id.tvExpertise);
                 ImageView favourites=view.findViewById(R.id.chkFavorite);
-                PlayerView video=activity.findViewById(R.id.videoContainer);
                 if(exercise.getFavourites()){
                     Picasso.get()
                             .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJBkdHJWiVPQwlcYkiakIzlEFm_9sJQlX53Q&s")
@@ -210,24 +209,6 @@ public  class UIController {
         TextView muscles=activity.findViewById(R.id.tvMuscle);
         muscles.setText(String.join(", ",exercise.getMuscles()));
         items.setText(String.join(", ", exercise.getItems()));
-        ExoPlayer player=new ExoPlayer.Builder(activity).build();
-        MediaItem mediaItem=MediaItem.fromUri(exercise.getVideo());
-        player.setMediaItem(mediaItem);
-        PlayerView videoPlayer=activity.findViewById(R.id.videoContainer);
-        videoPlayer.setPlayer(player);
-        videoPlayer.setUseController(true);
-        videoPlayer.setShowBuffering(PlayerView.SHOW_BUFFERING_ALWAYS);
-        videoPlayer.setControllerHideOnTouch(true);
-        videoPlayer.setResizeMode(RESIZE_MODE_FILL);
-        videoPlayer.setControllerHideOnTouch(true);
-        videoPlayer.setControllerShowTimeoutMs(5000);
-        if(activity instanceof ActivityExerciseDetail){
-            ActivityExerciseDetail.setPlayer(player);
-        }else{
-            ActivityFavouriteDetails.setPlayer(player);
-        }
-        player.prepare();
-        player.play();
         if(exercise.getFavourites()){
             Picasso.get()
                     .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJBkdHJWiVPQwlcYkiakIzlEFm_9sJQlX53Q&s")
@@ -261,23 +242,32 @@ public  class UIController {
             }
         });
     }
+    @SuppressLint("SetTextI18n")
     public void profile(ProfileResponse response){
+        errorService(response.toString());
         editTexts.forEach(e->{
+            Picasso.get().load(response.getAvatar())
+                    .fit()
+                    .centerCrop()
+                    .into((ImageView) activity.findViewById(R.id.imgAvatar));
             switch (e.getTag().toString()){
-                case "avatar":
-                    e.setText(response.getAvatar());
                 case "login":
                     e.setText(response.getLogin());
+                    break;
                 case "experts":
                     if(response.getExperts()==null){
                         e.setText("уровень ещё неуказано");
+                        break;
                     }else {
                         e.setText(response.getExperts());
+                        break;
                     }
                 case "activity":
                     e.setText(response.getActivity().toString());
+                    break;
                 case "top":
-                    e.setText(response.getTop());
+                    e.setText(response.getTop().toString());
+                    break;
             }
         });
     }

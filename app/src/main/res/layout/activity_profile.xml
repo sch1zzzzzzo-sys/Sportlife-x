@@ -90,7 +90,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:tag="Name"
+                    android:tag="login"
 
                     android:background="@drawable/profile_field_bg"
                     android:clickable="true"
@@ -126,7 +126,7 @@
 
             <TextView
                 android:id="@+id/tvExpertise"
-                android:tag="expert"
+                android:tag="experts"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="12dp"
@@ -174,7 +174,7 @@
 
             <TextView
                 android:id="@+id/tvRating"
-                android:tag="raiting"
+                android:tag="top"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:padding="12dp"
