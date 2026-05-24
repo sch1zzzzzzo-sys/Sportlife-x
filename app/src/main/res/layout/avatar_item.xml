@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:layout_margin="15dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackgroundBorderless">
 
-    <ImageView
-        android:id="@+id/imgAvatarItem"
+<FrameLayout android:layout_width="80dp"
+    android:layout_height="80dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/circle_background"
-        android:scaleType="centerCrop"
+        android:id="@+id/button"
+        android:background="@drawable/avatar_background2"
+        app:backgroundTint="@null"
+        app:cornerRadius="40dp" />
 
-        android:contentDescription="Аватар"
-        />
-
+    <ImageView
+        android:layout_width="70dp"
+        android:id="@+id/imgAvatarItem"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:background="@drawable/avatar_background"
+        android:scaleType="centerCrop"/>
 </FrameLayout>

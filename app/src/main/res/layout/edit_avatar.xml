@@ -8,7 +8,7 @@
 
 
     <LinearLayout
-        android:layout_width="416dp"
+        android:layout_width="match_parent"
         android:layout_height="249dp"
         android:background="#333333"
         android:orientation="vertical"
@@ -20,6 +20,7 @@
 
         <TextView
             android:id="@+id/Title"
+            android:tag="login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -27,7 +28,7 @@
             android:text="Смена Аватара"
             android:textAlignment="center"
             android:textColor="#00ACC1"
-            android:textSize="35sp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
 
@@ -48,23 +49,25 @@
 
 
             <Button
-                android:id="@+id/btNo"
+                android:id="@+id/btnNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Нет"
                 android:textColor="#FFFFFF"
+                android:textSize="14dp"
                 app:backgroundTint="#757575"
                 app:cornerRadius="24dp" />
 
             <Button
-                android:id="@+id/btYes"
+                android:id="@+id/btnYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 android:text="Да"
                 android:textColor="#FFFFFF"
+                android:textSize="14dp"
                 app:backgroundTint="#00ACC1"
                 app:cornerRadius="24dp" />
         </LinearLayout>
