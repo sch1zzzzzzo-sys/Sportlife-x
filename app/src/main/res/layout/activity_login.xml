@@ -8,16 +8,12 @@
     android:layout_height="match_parent"
     android:background="#333333"
     tools:context=".Activity.MainActivity">
-
-    <!-- Центральная направляющая (как пунктирная линия на скриншоте) -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <!-- Логотип: Sport - life -->
     <LinearLayout
         android:id="@+id/layout_logo"
         android:layout_width="wrap_content"
@@ -31,29 +27,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sport - "
-            android:textColor="#FFFFFF"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+            style="@style/nameAppLeft"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="life"
-            android:textColor="#00B7B7"
-            android:textSize="35dp"
-            android:textStyle="bold" />
+            style="@style/nameAppRight"/>
     </LinearLayout>
-
-    <!-- Заголовок: Регистрация -->
     <TextView
         android:id="@+id/tv_registration_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="Регистрация"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        style="@style/secondTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_logo" />
@@ -65,13 +53,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Name:"
-        android:textSize="15dp"
+        style="@style/EditName"
         android:padding="12dp"
         android:tag="login"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,14 +68,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Password:"
+        style="@style/EditPassword"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:textSize="15dp"
         android:tag="password"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,9 +88,7 @@
         android:background="@drawable/button_green_rounded"
         android:text="Регистрация"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
-        android:textStyle="bold"
+        style="@style/buttonMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,8 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Есть аккаунт?"
-        android:textColor="#B0B0B0"
-        android:textSize="16dp"
+        style="@style/subNavigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,9 +115,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:tag="password"
-        android:text=""
-        android:textSize="12dp"
-        android:textColor="#FF0000"
+        style="@style/errorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,9 +129,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
-        android:text=""
-        android:textSize="12dp"
-        android:textColor="#FF0000"
+        style="@style/errorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
